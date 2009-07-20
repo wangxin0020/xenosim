@@ -1,4 +1,4 @@
-vpath %.c $(top_srcdir)/../ksrc/nucleus
+vpath %.c $(top_srcdir)/xenomai/ksrc/nucleus
 
 CC = $(top_builddir)/gcic/gcic
 
@@ -39,6 +39,6 @@ AM_CPPFLAGS = \
 	--kernel-code \
 	$(atomic_core) \
 	-I$(srcdir)/../include \
-	-I$(top_srcdir)/../include
+	-I$(top_srcdir)/xenomai/include
 
 libnucleus_sim_a_LIBADD = ../adapter/adapter.o

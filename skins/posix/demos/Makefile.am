@@ -1,4 +1,4 @@
-vpath %.c $(top_srcdir)/../examples/posix
+vpath %.c $(top_srcdir)/xenomai/examples/posix
 
 CC = $(top_builddir)/gcic/gcic
 
@@ -13,7 +13,7 @@ INCLUDES = \
 	--gcic-backend=$(prefix)/libexec/gcic \
 	-I$(srcdir)/.. \
 	-I$(top_srcdir)/include \
-	-I$(top_srcdir)/../include
+	-I$(top_srcdir)/xenomai/include
 
 AM_LDFLAGS = \
 	-u __xeno_user_init \

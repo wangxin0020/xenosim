@@ -2,9 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
 
-AC_INIT([Xenomai simulator],m4_normalize(m4_include([../config/version])),xenomai-help@gna.org,xenosim)
+AC_INIT([Xenomai simulator],m4_normalize(m4_include([xenomai/config/version])),xenomai-help@gna.org,xenosim)
 AC_CONFIG_HEADERS(include/xeno_config.h)
-AC_CONFIG_AUX_DIR(../config)
+AC_CONFIG_AUX_DIR(xenomai/config)
 AC_CONFIG_SRCDIR(vm/thread.cc)
 AC_PREFIX_DEFAULT(/usr/xenomai)
 AC_CANONICAL_BUILD
@@ -45,7 +45,7 @@ AM_MAINTAINER_MODE
 AC_PROG_LIBTOOL
 AM_PROG_LEX
 
-if test \! -r $srcdir/../ksrc/nucleus ; then
+if test \! -r $srcdir/xenomai/ksrc/nucleus ; then
     AC_MSG_ERROR([Missing Xenomai source tree in parent directory])
 fi
 
@@ -438,7 +438,7 @@ dnl Build the Makefiles
 dnl
 
 base=asm-sim
-AC_CONFIG_LINKS([include/asm/xenomai:../include/$base])
+AC_CONFIG_LINKS([include/asm/xenomai:xenomai/include/$base])
 
 AC_CONFIG_SUBDIRS(tkimg)
 

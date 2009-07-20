@@ -1,4 +1,4 @@
-vpath %.c $(top_srcdir)/../ksrc/skins/posix
+vpath %.c $(top_srcdir)/xenomai/ksrc/skins/posix
 
 includesubdir = $(prefix)/include/asm-sim
 
@@ -15,8 +15,8 @@ AM_CPPFLAGS = \
 	--gcic-backend=$(prefix)/libexec/gcic \
 	--skin-code \
 	$(atomic_core) \
-	-I$(top_srcdir)/../ksrc/skins \
-	-I$(top_srcdir)/../include \
+	-I$(top_srcdir)/xenomai/ksrc/skins \
+	-I$(top_srcdir)/xenomai/include \
 	-I$(srcdir)/..
 
 lib_LIBRARIES = libposix_sim.a

@@ -6,4 +6,4 @@ INCLUDES = \
 	-D__XENO_SIM__ \
 	@MVM_CXXFLAGS@ \
 	-I$(srcdir)/.. \
-	-I$(srcdir)/../../include
+	-I$(top_srcdir)/xenomai/include

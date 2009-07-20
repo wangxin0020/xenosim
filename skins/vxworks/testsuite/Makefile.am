@@ -7,8 +7,8 @@ INCLUDES = \
 	--gcic-backend=$(prefix)/libexec/gcic \
 	-I$(srcdir)/.. \
 	-I$(top_srcdir)/include \
-	-I$(top_srcdir)/../include \
-	-I$(top_srcdir)/../include/vxworks
+	-I$(top_srcdir)/xenomai/include \
+	-I$(top_srcdir)/xenomai/include/vxworks
 
 LDFLAGS = \
 	-u __xeno_user_init \

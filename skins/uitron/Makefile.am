@@ -1,4 +1,4 @@
-vpath %.c $(top_srcdir)/../ksrc/skins/uitron
+vpath %.c $(top_srcdir)/xenomai/ksrc/skins/uitron
 
 CC = $(top_builddir)/gcic/gcic
 
@@ -14,8 +14,8 @@ AM_CPPFLAGS = \
 	--skin-code \
 	$(atomic_core) \
 	-I$(srcdir)/../include \
-	-I$(top_srcdir)/../include \
-	-I$(top_srcdir)/../ksrc/skins/
+	-I$(top_srcdir)/xenomai/include \
+	-I$(top_srcdir)/xenomai/ksrc/skins/
 
 lib_LIBRARIES = libuitron_sim.a
 

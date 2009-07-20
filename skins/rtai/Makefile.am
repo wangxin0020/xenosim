@@ -1,4 +1,4 @@
-vpath %.c $(top_srcdir)/../ksrc/skins/rtai
+vpath %.c $(top_srcdir)/xenomai/ksrc/skins/rtai
 
 CC = $(top_builddir)/gcic/gcic
 
@@ -14,7 +14,7 @@ AM_CPPFLAGS = \
 	--skin-code \
 	$(atomic_core) \
 	-I$(srcdir)/../include \
-	-I$(top_srcdir)/../include
+	-I$(top_srcdir)/xenomai/include
 
 lib_LIBRARIES = librtai_sim.a
 
