@@ -57,9 +57,10 @@ libnucleus_sim_a_AR = $(AR) $(ARFLAGS)
 libnucleus_sim_a_DEPENDENCIES = ../adapter/adapter.o
 nodist_libnucleus_sim_a_OBJECTS = sched.$(OBJEXT) sched-idle.$(OBJEXT) \
 	sched-rt.$(OBJEXT) sched-sporadic.$(OBJEXT) sched-tp.$(OBJEXT) \
-	heap.$(OBJEXT) intr.$(OBJEXT) map.$(OBJEXT) module.$(OBJEXT) \
-	pod.$(OBJEXT) registry.$(OBJEXT) synch.$(OBJEXT) \
-	thread.$(OBJEXT) timebase.$(OBJEXT) timer.$(OBJEXT)
+	bufd.$(OBJEXT) heap.$(OBJEXT) intr.$(OBJEXT) map.$(OBJEXT) \
+	module.$(OBJEXT) pod.$(OBJEXT) registry.$(OBJEXT) \
+	synch.$(OBJEXT) thread.$(OBJEXT) timebase.$(OBJEXT) \
+	timer.$(OBJEXT)
 libnucleus_sim_a_OBJECTS = $(nodist_libnucleus_sim_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/include
 depcomp = $(SHELL) $(top_srcdir)/xenomai/config/depcomp
@@ -252,6 +253,7 @@ nodist_libnucleus_sim_a_SOURCES = \
 			sched-rt.c \
 			sched-sporadic.c \
 			sched-tp.c \
+			bufd.c \
 			heap.c \
 			intr.c \
 			map.c \
@@ -345,6 +347,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bufd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/heap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intr.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map.Po@am__quote@

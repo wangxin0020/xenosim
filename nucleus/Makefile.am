@@ -22,6 +22,7 @@ nodist_libnucleus_sim_a_SOURCES = \
 			sched-rt.c \
 			sched-sporadic.c \
 			sched-tp.c \
+			bufd.c \
 			heap.c \
 			intr.c \
 			map.c \
