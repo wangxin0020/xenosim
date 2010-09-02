@@ -814,20 +814,22 @@ proc Debugger:visitFile {debugfrm filename} {
 
     # otherwise, open a file dialog to get its name...
 
-    set dialog [tix filedialog tixExFileSelectDialog]
+    set dialog [tix filedialog]
     $dialog config -command "Debugger:displaySource $debugfrm" \
 	-title "Select a File"
 
-    $dialog subwidget fsbox config -filetypes { \
-	{{*.c}	{*.c  -- C source files}}
-	{{*.h}	{*.h  -- C/C++ header files}}
-	{{*.cc}	{*.cc  -- C++ source files}}
-	{{*.C}	{*.C  -- C++ source files}}
-	{{*.cpp}	{*.cpp  -- C++ source files}}
-	{{*}		{*      -- All files}}
+    if {[winfo class $dialog] == "TixExFileSelectDialog"} {
+	$dialog subwidget fsbox config -filetypes {
+	    {{*.c}	{*.c  -- C source files}}
+	    {{*.h}	{*.h  -- C/C++ header files}}
+	    {{*.cc}	{*.cc  -- C++ source files}}
+	    {{*.C}	{*.C  -- C++ source files}}
+	    {{*.cpp}	{*.cpp  -- C++ source files}}
+	    {{*}		{*      -- All files}}
+	}
+	$dialog subwidget fsbox subwidget types pick 0
     }
 
-    $dialog subwidget fsbox subwidget types pick 0
     cascadeWindow $dialog [winfo toplevel $debugfrm]
     $dialog popup
 }

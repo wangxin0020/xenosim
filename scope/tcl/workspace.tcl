@@ -597,7 +597,7 @@ proc Workspace:newProject {context} {
     global $context:projexe
     set $context:projexe ""
 
-    set dialog [tix filedialog tixExFileSelectDialog]
+    set dialog [tix filedialog]
     $dialog config -title "Select an executable file"
 
     catch {
@@ -605,16 +605,10 @@ proc Workspace:newProject {context} {
 	    [TkRequest $context CanonicalizePath [set Workspace:session(DefaultExecDir)]]
     }
 
-    $dialog subwidget fsbox config -filetypes { \
-		{{*}		{*      -- All files}}
-    }
-
-    $dialog subwidget fsbox subwidget types pick 0
-
     tixFileEntry $f.projexe -label "Executable file: " \
  	-variable $context:projexe \
 	-validatecmd "Workspace:valExecName" \
-	-dialogtype tixExFileSelectDialog \
+	-dialogtype tixFileSelectDialog \
  	-options {
  	    entry.width 30
  	    label.anchor w
@@ -711,20 +705,23 @@ proc Workspace:openProject {context {projfile {}}} {
     }
 
     # otherwise, prompt for a valid project
-    set dialog [tix filedialog tixExFileSelectDialog]
+    set dialog [tix filedialog]
     $dialog config -command "Workspace:openProjectOk $context" \
 	-title "Select a Project"
 
     catch {
-	$dialog subwidget fsbox config -directory [set Workspace:session(DefaultProjectDir)]
+	$dialog subwidget fsbox config -pattern "*.mvm" \
+	    -directory [set Workspace:session(DefaultProjectDir)]
     }
 
-    $dialog subwidget fsbox config -filetypes { \
-	{{*.mvm} {*.mvm  -- Xenoscope project files}}
-	{{*} {*      -- All files}}
+    if {[winfo class $dialog] == "TixExFileSelectDialog"} {
+	$dialog subwidget fsbox config -filetypes {
+	    {{*.mvm} {*.mvm  -- Xenoscope project files}}
+	    {{*} {*      -- All files}}
+	}
+	$dialog subwidget fsbox subwidget types pick 0
     }
 
-    $dialog subwidget fsbox subwidget types pick 0
     cascadeWindow $dialog $context
     $dialog popup
 }
@@ -805,7 +802,7 @@ proc Workspace:editProject {context} {
     global $context:projexe
     set $context:projexe [set Project:settings(Executable)]
 
-    set dialog [tix filedialog tixExFileSelectDialog]
+    set dialog [tix filedialog]
     $dialog config -title "Select the executable file"
 
     catch {
@@ -813,16 +810,10 @@ proc Workspace:editProject {context} {
 	    [TkRequest $context CanonicalizePath [set Workspace:session(DefaultExecdir)]]
     }
 
-    $dialog subwidget fsbox config -filetypes { \
-		{{*}		{*      -- All files}}
-    }
-
-    $dialog subwidget fsbox subwidget types pick 0
-
     tixFileEntry $f.projexe -label "Executable file: " \
  	-variable $context:projexe \
 	-validatecmd "Workspace:valExecName" \
-	-dialogtype tixExFileSelectDialog \
+	-dialogtype tixFileSelectDialog \
  	-options {
  	    entry.width 30
  	    label.anchor w
