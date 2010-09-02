@@ -89,9 +89,9 @@ AC_MSG_RESULT(${CONFIG_XENO_OPT_WATCHDOG:-no})
 if test x$CONFIG_XENO_OPT_DEBUG = xy; then
    CXXFLAGS="-g"
    CFLAGS="-g"
-   defaultwrap=yes
-else
    defaultwrap=no
+else
+   defaultwrap=yes
 fi
 
 AC_MSG_CHECKING([for GCC tarball])
