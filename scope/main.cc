@@ -63,7 +63,7 @@ static RETSIGTYPE appCleanupOnSig (int sig)
 int main (int argc, char **argv)
 
 {
-    static char *tclModules[] = {
+    static const char *tclModules[] = {
 #ifdef TCLWRAP
 #include "scope.tcc"
 #else

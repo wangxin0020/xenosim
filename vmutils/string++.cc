@@ -202,7 +202,7 @@ CString::CString(void *ptr) : theString(0)
 
 CString::CString(double d, const char *format) : theString(0)
 {
-    if (fabs(d) == infinity())
+    if (fabs(d) == INFINITY)
 	{
 	allocate("");
 	return;
@@ -829,7 +829,7 @@ char *CStringTok::getNextTok(char sep)
     return beg;
 }
 
-char *CStringTok::getNextTok(char *seplist)
+char *CStringTok::getNextTok(const char *seplist)
 {
     if (mark == (char *)-1)
 	mark = theString;
@@ -851,7 +851,7 @@ CString CString::dirname ()
 	return CString(*this);
 
     CString posixp(*this);
-    char *p = strrchr(posixp.posixize(),'/');
+    const char *p = strrchr(posixp.posixize(),'/');
 
     if (p)
 	return CString(posixp.theString,p - posixp.theString);
@@ -866,7 +866,7 @@ CString CString::basename ()
 	return CString(*this);
 
     CString posixp(*this);
-    char *p = strrchr(posixp.posixize(),'/');
+    const char *p = strrchr(posixp.posixize(),'/');
 
     if (p)
 	return CString(p + 1);
@@ -883,10 +883,18 @@ CString CString::absPath ()
     char cwd[MAXPATHLEN],
 	wd[MAXPATHLEN];
 
-    getcwd(cwd,sizeof(cwd));
-    chdir(dirname());
-    getcwd(wd,sizeof(wd));
-    chdir(cwd);
+    if (getcwd(cwd, sizeof(cwd)) == NULL)
+      	return CString();
+
+    if (chdir(dirname()))
+      	return CString();
+      
+    if (getcwd(wd, sizeof(wd)) == NULL)
+      	return CString();
+
+    if (chdir(cwd))
+      	return CString();
+
     CString slash;
     slash.appendChar('/');
     strcat(wd,slash);
@@ -1244,7 +1252,8 @@ CString CString::getAbbrevPath (int okAbsNames) // pretend that theString is a p
     if (*is.theString != '/')	// translate relative pathes to absolute
 	{
 	char wd[MAXPATHLEN];
-	getcwd(wd,sizeof(wd));
+	if (getcwd(wd,sizeof(wd)) == NULL)
+	    return os;
 	is = wd + CString("/") + is;
 	}
 

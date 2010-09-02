@@ -407,7 +407,7 @@ public:
 
     char *getNextTok(char sep);
 
-    char *getNextTok(char *seplist);
+    char *getNextTok(const char *seplist);
 };
 
 static inline char *stringDup(const char *s) {

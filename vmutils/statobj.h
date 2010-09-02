@@ -63,10 +63,10 @@ extern double variance(double,
 		       double,
 		       int);
 
-extern char *rawAccuracy(char *buf,
-			 double,
-			 double,
-			 int);
+extern const char *rawAccuracy(char *buf,
+			       double,
+			       double,
+			       int);
 
 extern char *strAccuracy(char *buf,
 			 double,

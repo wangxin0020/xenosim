@@ -113,16 +113,16 @@ public:
 
     static int debugMode;
 
-    static int modInitialize(char *tclScript);
+    static int modInitialize(const char *tclScript);
 
-    static int modInitialize(char **tclScriptArray);
+    static int modInitialize(const char **tclScriptArray);
 
     static int appInitialize(const char *argv0,
-			     char *tclScript =0,
+			     const char *tclScript =0,
 			     TkAppHookProc proc =0);
 
     static int appInitialize(const char *argv0,
-			     char **tclScriptArray,
+			     const char **tclScriptArray,
 			     TkAppHookProc proc =0);
 
     static void dumpInstallPathes(FILE *fp); // useful for fixing an installation glitch

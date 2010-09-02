@@ -177,7 +177,7 @@ AC_MSG_CHECKING(for infinity)
 AC_CACHE_VAL(ac_cv_func_or_macro_infinity,
 [AC_TRY_LINK(
 [#include <math.h>],
-[double inf = infinity();],
+[double inf = INFINITY;],
 [ac_cv_func_or_macro_infinity=yes],
 [ac_cv_func_or_macro_infinity=no])])
 if [[ $ac_cv_func_or_macro_infinity = yes ]]; then
@@ -344,7 +344,7 @@ AH_BOTTOM([#ifndef _XENO_SIM_CONFIG_H
 #define  _XENO_SIM_CONFIG_H 1])
 
 AH_BOTTOM([#ifndef HAVE_INFINITY
-#define infinity() (HUGE_VAL)
+#define INFINITY HUGE_VAL
 #endif /* !HAVE_INFINITY */])
 
 AH_BOTTOM([#ifndef HAVE_SOCKLEN_T

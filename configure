@@ -20297,7 +20297,7 @@ cat >>conftest.$ac_ext <<_ACEOF
 int
 main ()
 {
-double inf = infinity();
+double inf = INFINITY;
   ;
   return 0;
 }

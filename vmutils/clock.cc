@@ -53,7 +53,7 @@ const char *DisplayTimeString[] = { "u","ms","s", "s", "mn", "h", "d" };
 
 const ETime ZEROETIME(0,USec);
 
-const ETime MAXETIME(infinity(),USec);
+const ETime MAXETIME(INFINITY,USec);
 
 const ITime NOW(ZEROETIME),
     ZEROTIME(ZEROETIME),
@@ -450,7 +450,7 @@ const char *ITime::format (const char *suffix,
 	else
 	    DisplayTimeBuf = "0";
 	}
-    else if (left != infinity())
+    else if (left != INFINITY)
 	{
 	count = 0;
 	while (left > 0.0)

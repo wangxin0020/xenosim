@@ -185,8 +185,8 @@ STDisplayCurveObject::STDisplayCurveObject (TkCurvePlotter *_plotter)
     okYAdjust = 1;
     points = new STDisplayPixelPoint[nMaxPointDisplayed + 1];
     nPointDisplayed = 0;
-    yMin = infinity();
-    yMax = -infinity();
+    yMin = INFINITY;
+    yMax = -INFINITY;
     xMin = xMax = 0.0;
     yScale = 0.0;
     isMapped = 0;
@@ -368,7 +368,7 @@ void STDisplayCurveObject::setYBounds (double ymin, double ymax,int setYBoundsDo
     if ( ymin >= ymax)
 	{
 	yMin = yMax = ymax;
-	yScale = infinity();
+	yScale = INFINITY;
 	}
     else
 	{
@@ -639,7 +639,7 @@ MvmTimeGraphDisplay::MvmTimeGraphDisplay (MvmTimeGraphExportMsg *_exmsg,
     
     iNextPoint = (double) iCurr - 0.5;
     iMaxPoint = (timePlotter->okInfiniteTimeLimit) ?
-	infinity() : timePlotter->tAll / dtUpdate;
+	INFINITY : timePlotter->tAll / dtUpdate;
     nVbyP = 1.0;
     
     iOld = iCurr - iLag + 1;
@@ -673,7 +673,7 @@ MvmTimeGraphDisplay::MvmTimeGraphDisplay (MvmTimeGraphDisplay* src,
     lastY = -1.0;
 
     iNextPoint = (double) iCurr - 0.5;
-    iMaxPoint = (timePlotter->okInfiniteTimeLimit) ? infinity() : timePlotter->tAll / dtUpdate;
+    iMaxPoint = (timePlotter->okInfiniteTimeLimit) ? INFINITY : timePlotter->tAll / dtUpdate;
 
     nVbyP = 1.0;
     iOld = iCurr - iLag + 1;

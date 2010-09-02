@@ -83,9 +83,10 @@ static RETSIGTYPE faultHandler (int sig)
 #endif // !DEBUG_ENABLED
 
 int TkContext::appInitialize (const char *_argv0,
-			      char **_tclScriptArray,
+			      const char **_tclScriptArray,
 			      TkAppHookProc _stateProc)
 {
+    static char nodir[] = "cannot locate installation directory";
 #ifndef DEBUG_ENABLED
     struct sigaction sa;
     sa.sa_handler = (SIGHANDLER_TYPE)&faultHandler;
@@ -119,7 +120,7 @@ int TkContext::appInitialize (const char *_argv0,
 
     if (installRootDir[0] == '.')
         {
-	Tcl_SetResult(tclInterp,"cannot locate installation directory",TCL_STATIC);
+	Tcl_SetResult(tclInterp,nodir,TCL_VOLATILE);
 	return TCL_ERROR;
 	}
 
@@ -161,10 +162,10 @@ int TkContext::appInitialize (const char *_argv0,
 }
 
 int TkContext::appInitialize (const char *_argv0,
-			      char *_tclScript,
+			      const char *_tclScript,
 			      TkAppHookProc _stateProc)
 {
-    char *tclArray[] = { _tclScript, NULL };
+    const char *tclArray[] = { _tclScript, NULL };
     return appInitialize(_argv0,tclArray,_stateProc);
 }
 
@@ -182,7 +183,7 @@ void TkContext::appRun ()
 // first character of tclScript, '!' standing for an inline
 // script, anything else being interpreted as a directory path.
 
-int TkContext::modInitialize (char *_tclScript)
+int TkContext::modInitialize (const char *_tclScript)
 
 {
     if (!tclInterp)
@@ -212,13 +213,13 @@ int TkContext::modInitialize (char *_tclScript)
 			TCL_GLOBAL_ONLY|TCL_LIST_ELEMENT|TCL_APPEND_VALUE))
 	    return TCL_ERROR;
 	}
-    else if (Tcl_GlobalEval(tclInterp,_tclScript + 1) != TCL_OK)
+    else if (Tcl_GlobalEval(tclInterp,(char *)_tclScript + 1) != TCL_OK)
 	return TCL_ERROR;
 
     return TCL_OK;
 }
 
-int TkContext::modInitialize (char **_tclScriptArray)
+int TkContext::modInitialize (const char **_tclScriptArray)
 
 {
     for (int n = 0; _tclScriptArray[n]; n++)
@@ -449,11 +450,13 @@ int TkContext::notifyRequest (ClientData clientData,
 			      int argc,
 			      char *argv[])
 {
+    static char noarg[] = "not enough arguments passed to TkRequest";
+
     if (argc < 3)
 	{
 	Tcl_SetResult(interp,
-		      "not enough arguments passed to TkRequest",
-		      TCL_STATIC);
+		      noarg,
+		      TCL_VOLATILE);
 	return TCL_ERROR;
 	}
 

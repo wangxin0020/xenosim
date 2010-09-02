@@ -396,7 +396,7 @@
 #define  _XENO_SIM_CONFIG_H 1
 
 #ifndef HAVE_INFINITY
-#define infinity() (HUGE_VAL)
+#define INFINITY HUGE_VAL
 #endif /* !HAVE_INFINITY */
 
 #ifndef HAVE_SOCKLEN_T

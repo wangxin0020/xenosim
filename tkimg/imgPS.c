@@ -277,6 +277,7 @@ CommonReadPS(interp, handle, format, imageHandle,
     Tcl_DString dstring;
     myblock bl;
     int zoomx, zoomy;
+    unsigned long foo;
 
     index = parseFormat(format, &zoomx, &zoomy);
     if (index < 0) {
@@ -295,7 +296,7 @@ CommonReadPS(interp, handle, format, imageHandle,
 	p += 14;
 	srcX += (strtoul(p, &p, 0) * zoomx + 36) / 72;
 	fileHeight += (strtoul(p, &p, 0) * zoomy + 36) / 72;
-	strtoul(p, &p, 0);
+	foo = strtoul(p, &p, 0);
 	srcY -= (strtoul(p, &p, 0) * zoomy + 36) / 72;
     } else {
 	/* pdf */

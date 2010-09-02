@@ -63,7 +63,7 @@ MvmSlope::MvmSlope(double x, double a, double xm)
     slant = a;
     xLim = xm;
     if ( a*(xLim - x0) < 0 ) {
-    if (xLim != infinity())
+    if (xLim != INFINITY)
 	statWarning("MvmSlope::MvmSlope() - unreachable limit");
     tMax = MAXITIME;
     }

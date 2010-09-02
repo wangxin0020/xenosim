@@ -115,8 +115,8 @@ void MvmStatObj::resetValues()
 
 {
     nVal = 0;
-    vMin = infinity();
-    vMax = -infinity();
+    vMin = INFINITY;
+    vMax = -INFINITY;
     nSampleDone = 0;
 }
 
@@ -259,8 +259,8 @@ void MvmIntegrator::resetValues()
 {
     s = se1 = se2 = 0.0;
     nVal = 0;
-    vMin = infinity();
-    vMax = -infinity();
+    vMin = INFINITY;
+    vMax = -INFINITY;
 }
 
 void MvmIntegrator::sample()
@@ -842,8 +842,8 @@ MvmFilter::MvmFilter(const char *_name,
     tUpdate = -dtUpdate;
     vType = _vType;
     nvMax = _nvMax;
-    vMax = -infinity();
-    vMin = infinity();
+    vMax = -INFINITY;
+    vMin = INFINITY;
 
     if (nvMax > 0)
 	v = new double[nvMax];
@@ -869,8 +869,8 @@ MvmFilter::MvmFilter(MvmInterfaceExportMsg *_gpex,
     tUpdate = -dtUpdate;
     vType = _vType;
     nvMax = _nvMax;
-    vMax = -infinity();
-    vMin = infinity();
+    vMax = -INFINITY;
+    vMin = INFINITY;
 
     if (nvMax > 0)
 	v = new double[nvMax];
@@ -1043,7 +1043,7 @@ MvmTimeGraph::MvmTimeGraph(const char *_name,
     yTgMin = vMin;
     yTgMax = vMax;
     yAdjust = 1;
-    lastSval = -infinity();
+    lastSval = -INFINITY;
 }
 
 MvmTimeGraph::MvmTimeGraph (MvmTimeGraphExportMsg *_exmsg,
@@ -1177,7 +1177,7 @@ double variance (double s2, double s1, int n)
     return y;
 }
 
-char *rawAccuracy (char *buf, double s1, double s2, int nsample)
+const char *rawAccuracy (char *buf, double s1, double s2, int nsample)
 
 {
     if (nsample <= 1)
