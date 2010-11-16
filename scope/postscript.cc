@@ -88,7 +88,7 @@ PSPlotter::PSPlotter (const char *file)
     fileName.expand();
     fp = fopen(fileName,"w");
     headerPath = TkContext::installRootDir;
-    headerPath += "/share/plotter.ps";
+    headerPath += "/share/xenosim/plotter.ps";
     headerPath.expand();
 }
 
